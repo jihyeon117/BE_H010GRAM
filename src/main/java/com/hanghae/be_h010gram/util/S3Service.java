@@ -27,7 +27,7 @@ public class S3Service {
     public String uploadFile(MultipartFile multipartFile) throws IOException {
         validateFileExists(multipartFile);
 
-        String fileName = UUID.randomUUID().toString() + "_" + multipartFile.getOriginalFilename();
+        String fileName = UUID.randomUUID() + "_" + multipartFile.getOriginalFilename();
 
         ObjectMetadata objectMetadata = new ObjectMetadata();
         objectMetadata.setContentLength(multipartFile.getSize());
