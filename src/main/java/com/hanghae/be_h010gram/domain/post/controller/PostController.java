@@ -49,7 +49,7 @@ public class PostController {
     // 추가
     @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE, MediaType.APPLICATION_FORM_URLENCODED_VALUE})
     @Operation(summary = "게시글 생성")
-    public ResponseDto<PostResponseDto> createPost(@RequestPart(value = "postRequestDto", required = false) PostRequestDto postRequestDto,
+    public ResponseDto<PostResponseDto> createPost(@RequestPart PostRequestDto postRequestDto,
                                                    @RequestPart(value = "imageFile", required = false) MultipartFile image,
                                                    @AuthenticationPrincipal UserDetailsImpl userDetails) throws IOException {
         return postService.createPost(postRequestDto, image, userDetails.getMember());

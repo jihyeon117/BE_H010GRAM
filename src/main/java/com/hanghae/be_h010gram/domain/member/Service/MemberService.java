@@ -45,7 +45,7 @@ public class MemberService {
         }
 
         //토큰 생성 및 헤더 반환
-        String token = jwtUtil.createToken(member.getNickname(), member.getEmail(), member.getId());
+        String token = jwtUtil.createToken(member.getNickname(), member.getEmail(), member.getId(), member.getMemberImage());
         response.addHeader(JwtUtil.AUTHORIZATION_HEADER, token);
 
         return ResponseDto.setSuccess("로그인 성공");

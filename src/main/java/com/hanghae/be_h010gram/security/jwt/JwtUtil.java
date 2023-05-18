@@ -25,7 +25,7 @@ public class JwtUtil {
 
     public static final String AUTHORIZATION_HEADER = "Authorization";
     private static final String BEARER_PREFIX = "Bearer ";
-    private static final long TOKEN_TIME = 60 * 60 * 1000L;
+    private static final long TOKEN_TIME = 24 * 60 * 60 * 1000L;
     private final UserDetailsServiceImpl userDetailsService;
 
     @Value("${jwt.secret.key}")
@@ -49,12 +49,13 @@ public class JwtUtil {
     }
 
     // 토큰 생성
-    public String createToken(String nickname, String email, Long memberId) {
+    public String createToken(String nickname, String email, Long memberId, String memberImage) {
         Date date = new Date();
 
         return BEARER_PREFIX + Jwts.builder().setSubject(email)
                 .claim("nickname", nickname)
                 .claim("memberId", memberId)
+                .claim("memberImage", memberImage)
                 .setExpiration(new Date(date.getTime() + TOKEN_TIME))
                 .setIssuedAt(date).signWith(key, signatureAlgorithm)
                 .compact();
